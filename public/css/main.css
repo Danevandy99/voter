@@ -21,6 +21,7 @@ body {
 	font-size: 16px;
 	margin: 0;
 	padding: 0;
+	background-color: #ffaa01;
 }
 
 header {
@@ -41,34 +42,42 @@ p {
 
 /****** Header Styling ******/
 
+header {
+	background-color: white;
+	color: #ffaa01;
+}
+
 header p {
 	margin: 16px 0 5px 0;
+	display: inline-block;
+	margin-right: 40vw;
 }
 
 .menu {
 	text-decoration: none;
 	padding: 6px;
 	margin: 0;
-	color: #727272;
+	color: #ffaa01;
+	display: inline-block;
 }
 
 .menu:visited {
-	color: #727272;
+	color: #ffaa01;
 }
 
 .menu:hover {
-	color: #FFA000;
+	color: #ffaa01;
 }
 
 .menu:active {
-	color: #FF630D;
+	color: #ffaa01;
 }
 
 header a ~ p {
 	margin: 0;
 	padding: 0;
 	display: inline;
-	color: #ECEFF1;
+	color: #ffaa01;
 }
 
 #display-name {
@@ -85,6 +94,18 @@ header a ~ p {
 #login-btn {
 	width: 225px;
 	padding: 7px 5px;
+}
+
+.title {
+	color: white;
+	font-size: 60pt;
+	font-family: 'Roboto';
+	margin-top: 30vh;
+}
+
+.login p {
+	color: white;
+	margin-bottom: 20px;
 }
 
 .btn p {
@@ -115,12 +136,12 @@ img {
 /****** Click Styling ******/
 
 .btn-container {	/* Styling for the div that contains the buttons */
-	margin: -10px auto 0 auto;
+	margin: 30px auto 0 auto;
 	text-align: center;
 }
 
 .btn {	/* Styling for buttons */
-	margin: 0 8px;
+	margin: 0 25px;
 	color: white;
 	background-color: #00BCD4;
 	display: inline-block;
