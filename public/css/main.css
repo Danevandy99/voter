@@ -140,8 +140,12 @@ img {
 	text-align: center;
 }
 
-.btn {	/* Styling for buttons */
+.btn-container .btn {
 	margin: 0 25px;
+}
+
+.btn {	/* Styling for buttons */
+	margin: 0 8px;
 	color: white;
 	background-color: #00BCD4;
 	display: inline-block;
@@ -179,8 +183,9 @@ img {
 	height: 200px;
 	border-radius: 3px;
 	margin: 86px auto 0 auto;
-	background-color: #EEE;
+	background-color: #fff;
 	text-align: center;
+	color: #ffaa01;
 	color: #000;
 }
 
@@ -195,14 +200,17 @@ img {
 .github-profile p {
 	margin: 0 0 0 16px;
 	text-align: left;
+	color: #00BCD4;
 }
 
 .profile-value {
 	font-weight: 400;
+	color: #00BCD4;
 }
 
-span {
+.data-container span {
 	font-weight: 500;
+	color: #00bcd4;
 }
 
 .github-profile > img {
@@ -211,15 +219,75 @@ span {
 }
 
 .github-profile .menu:hover {
-	color: #FFA000;
+	color: #00BCD4;
 }
 
 .github-profile .menu:active {
-	color: #FF630D;
+	color: #00BCD4;
 }
 
-#menu-divide {
-	color: #FFFFFF;
-	display: inline;
-	margin: 0;
+.data-container {
+	width: 450px;
+	background-color: white;
+	border-radius: 3px;
+	text-align: center;
+	margin: auto;
+	margin-top: 30px;
+	padding: 10px;
+	padding-top: 20px;
+}
+
+.your-polls-list {
+	list-style: none;
+	margin-left: -40px;
+}
+
+.your-polls-list li button {
+	display: inline-block;
+	margin: auto;
+	background-color: #ff4538;
+}
+
+.your-polls-list li {
+	border-left: 3px solid #00BCD4;
+	margin: 10px;
+}
+
+.your-polls-list li p {
+	display: inline-block;
+	font-size: 14pt;
+	text-align: center;
+	width: 300px;
+	
+}
+
+.your-polls {
+	display: none;
+}
+
+.data-container p {
+	display: block;
+	text-align: center;
+	margin: auto;
+	margin-bottom: 10px;
+	color: #ffaa01;
+	font-size: 15pt;
+}
+
+.data-container .options-list {
+	list-style: none;
+	margin-left: -40px;
+}
+
+.data-container input {
+	display: block;
+	text-align: center;
+	margin: auto;
+	margin-bottom: 10px;
+	width: 200px;
+	font-size: 12pt;
+	border-radius: 3px;
+	color: #ffaa01;
+	border: 0px;
+	border: 2px solid #00BCD4;
 }

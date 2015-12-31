@@ -4,12 +4,14 @@
 
 	<head>
 		<title>Voter</title>
-		
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
 	</head>
 
 	<header>
 		<p>Welcome, <span id="display-name"></span>!</p>
+		<a class="menu" href="/">Home</a>
+		<p>|</p>
 		<a class="menu" href="/profile">Profile</a>
 		<p>|</p>
 		<a class="menu" href="/logout">Logout</a>
@@ -19,8 +21,23 @@
 	
 		<div class="container">
 			<div class="btn-container">
-				<button class="btn">New Poll</button>
-				<button class="btn">Your Polls</button>
+				<button class="btn newbtn">New Poll</button>
+				<button class="btn yourbtn">Your Polls</button>
+			</div>
+			<div class="data-container new-poll">
+				<p>Name Your Poll</p>
+				<input type="textarea" name="name" class="name"/>
+				<p>Add Your Options</p>
+				<ul class="options-list">
+					<li><input type="textarea" name="option" class="option"/></li>
+					<li><input type="textarea" name="option" class="option"/></li>
+				</ul>
+				<button class="btn more-options">More Options</button>
+				<button class="btn submit">Submit</button>
+			</div>
+			<div class="data-container your-polls">
+				<ul class="your-polls-list">
+				</ul>
 			</div>
 		</div>
 		
