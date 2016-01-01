@@ -38,7 +38,10 @@ function ClickHandler() {
 	};
 
 	this.getPolls = function(req, res) {
-		Poll
+		var url_parts = url.parse(req.url, true);
+		var query = url_parts.query;
+		if (query.query === undefined) {
+			Poll
 			.find({
 				'author_id': req.user.github.id
 			}, {
@@ -50,6 +53,22 @@ function ClickHandler() {
 				}
 				res.json(result);
 			})
+		} else {
+			Poll
+			.findOne({
+				'author_id': req.user.github.id,
+				'_id': query.query
+			}, {
+				'__v': false
+			})
+			.exec(function(err, result) {
+				if (err) {
+					throw err;
+				}
+				res.json(result);
+			})
+		}
+		
 	};
 
 	this.deletePoll = function(req, res) {

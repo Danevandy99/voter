@@ -73,7 +73,7 @@
             button.className = "btn delete-btn";
             button.setAttribute('id', i);
             button.innerHTML = "DELETE";
-            button.addEventListener('click', function() {
+            button.addEventListener('click', function(e) {
                var id = $(this).attr('id');
                var url = appUrl + '/api/:id/polls';
                $.ajax({
@@ -87,17 +87,20 @@
                   cache: false,
                   timeout: 5000,
                   success: function(string) {
-                     ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', pollUrl, function(data) {
-                        $('.yourbtn').trigger('click');
-                     }));
+                     $('.yourbtn').trigger('click');
                   },
                   error: function(jqXHR, textStatus, errorThrown) {
                      alert('Error connecting to the Node.js server... ' + textStatus + " " + errorThrown);
                   }
                });
+               e.stopPropagation();
             });
             li.appendChild(p);
             li.appendChild(button);
+            li.setAttribute('id', i);
+            li.addEventListener('click', function(e) {
+               window.location.href = 'https://voter-danevandy99.c9users.io/view?query=' + data[$(this).attr('id')]._id;
+            });
             $('.your-polls-list').append(li);
          }
       }));
