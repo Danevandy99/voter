@@ -48,7 +48,10 @@
                cache: false,
                timeout: 5000,
                success: function(data) {
-                  alert(JSON.stringify(data));
+                  $('.options-list li input').val('');
+                  $('.new-poll').css('display', 'none');
+                  $('.view-poll').css('display', 'block');
+                  $('.view-poll a').attr('href', appUrl + '/view?query=' + data._id);
                },
                error: function(jqXHR, textStatus, errorThrown) {
                   alert('Error connecting to the Node.js server... ' + textStatus + " " + errorThrown);
@@ -61,6 +64,7 @@
    $('.yourbtn').click(function() {
       $('.your-polls').css("display", "block");
       $('.new-poll').css("display", "none");
+      $('.view-poll').css('display', 'none');
       ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', pollUrl, function(data) {
          data = JSON.parse(data);
          $('.your-polls-list').empty();
@@ -109,36 +113,8 @@
    $('.newbtn').click(function() {
       $('.new-poll').css('display', 'block');
       $('.your-polls').css('display', 'none');
+      $('.view-poll').css('display', 'none');
       $('input').val('');
    })
-
-
-   var addButton = document.querySelector('.btn-add');
-   var deleteButton = document.querySelector('.btn-delete');
-   var clickNbr = document.querySelector('#click-nbr');
-   var apiUrl = appUrl + '/api/:id/clicks';
-
-   function updateClickCount(data) {
-      var clicksObject = JSON.parse(data);
-      clickNbr.innerHTML = clicksObject.clicks;
-   }
-
-   ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, updateClickCount));
-
-   addButton.addEventListener('click', function() {
-
-      ajaxFunctions.ajaxRequest('POST', apiUrl, function() {
-         ajaxFunctions.ajaxRequest('GET', apiUrl, updateClickCount);
-      });
-
-   }, false);
-
-   deleteButton.addEventListener('click', function() {
-
-      ajaxFunctions.ajaxRequest('DELETE', apiUrl, function() {
-         ajaxFunctions.ajaxRequest('GET', apiUrl, updateClickCount);
-      });
-
-   }, false);
 
 })();

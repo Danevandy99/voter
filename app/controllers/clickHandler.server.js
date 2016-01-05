@@ -17,24 +17,47 @@ function ClickHandler() {
 	}
 
 	this.addPoll = function(req, res) {
-		var newPoll = new Poll();
-		newPoll.name = req.body.name;
-		var options = req.body.options;
-		var optionsArray = [];
-		for (var i = 0; i < options.length; i++) {
-			var jo = {};
-			jo.name = options[i];
-			jo.votes = 0;
-			optionsArray.push(jo);
-		}
-		newPoll.options = optionsArray;
-		newPoll.author_id = req.user.github.id;
-		newPoll.save(function(err) {
-			if (err) {
-				throw err;
+		var url_parts = url.parse(req.url, true);
+		var query = url_parts.query;
+		if (query.query === undefined) {
+			var newPoll = new Poll();
+			newPoll.name = req.body.name;
+			var options = req.body.options;
+			var optionsArray = [];
+			for (var i = 0; i < options.length; i++) {
+				var jo = {};
+				jo.name = options[i];
+				jo.votes = 0;
+				optionsArray.push(jo);
 			}
-		});
-		res.json(newPoll);
+			newPoll.options = optionsArray;
+			newPoll.author_id = req.user.github.id;
+			newPoll.save(function(err) {
+				if (err) {
+					throw err;
+				}
+			});
+			res.json(newPoll);
+		} else {
+			var option = req.body.option;
+			Poll
+			.findOneAndUpdate({
+				'_id': query.query,
+				'options.name': option
+			}, {
+				$inc: {
+					'options.$.votes': 1
+				}
+			})
+			.exec(function(err, result) {
+				if (err) {
+					throw err;
+				}
+
+				res.json(result);
+				console.log('Updated');
+			});
+		}
 	};
 
 	this.getPolls = function(req, res) {
@@ -42,33 +65,30 @@ function ClickHandler() {
 		var query = url_parts.query;
 		if (query.query === undefined) {
 			Poll
-			.find({
-				'author_id': req.user.github.id
-			}, {
-				'__v': false
-			})
-			.exec(function(err, result) {
-				if (err) {
-					throw err;
-				}
-				res.json(result);
-			})
-		} else {
-			Poll
-			.findOne({
-				'author_id': req.user.github.id,
-				'_id': query.query
-			}, {
-				'__v': false
-			})
-			.exec(function(err, result) {
-				if (err) {
-					throw err;
-				}
-				res.json(result);
-			})
+				.find({
+					'author_id': req.user.github.id
+				}, {
+					'__v': false
+				})
+				.exec(function(err, result) {
+					if (err) {
+						throw err;
+					}
+					res.json(result);
+				})
 		}
-		
+		else {
+			Poll
+				.findOne({
+					'_id': query.query
+				}, {
+					'__v': false
+				})
+				.exec(function(err, result) {
+					res.json(result);
+				})
+		}
+
 	};
 
 	this.deletePoll = function(req, res) {
