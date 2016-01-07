@@ -1,29 +1,79 @@
+<html>
 
-	<html>
+<head>
+	<title>Voter</title>
+	<link href="/public/css/main.css" rel="stylesheet" type="text/css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/controllers/UI.js"></script>
+</head>
 
-	<head>
-		<title>Voter</title>
+<header>
+	<p style='margin: auto; margin-top: 20px'>Welcome!</p>
+</header>
 
-		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
-	</head>
-
-	<header>
-		<p style='margin: auto; margin-top: 20px'>Welcome!</p>
-	</header>
-
-	<body>
-		<div class="container">
-			<div class="login">
-				<p class="title">VOTER</p>
-				<p>Create custom polls with live results</p>
-				<a href="/auth/github">
-					<div class="btn" id="login-btn">
-						<img src="/public/img/github_32px.png" alt="github logo" />
-						<p>LOGIN WITH GITHUB</p>
+<body>
+	<div class="container">
+		<div class="login">
+			<p class="title">VOTER</p>
+			<p>Create custom polls with live results</p>
+			<a href="/auth/github">
+				<div class="btn" id="login-btn">
+					<img src="/public/img/github_32px.png" alt="github logo" />
+					<p>LOGIN WITH GITHUB</p>
+				</div>
+			</a>
+			<a href="#">
+				<div class="btn trigger" id="login-btn">
+					<img src="http://static.wixstatic.com/media/132ad9_4efcfd76175f43e8b0e49ca430155970.png_srz_300_300_85_22_0.50_1.20_0.00_png_srz" height='32px' alt="github logo" />
+					<p>LOGIN WITH EMAIL</p>
+				</div>
+			</a>
+		</div>
+	</div>
+	<div class="modal-wrapper one">
+		<div class="modal">
+			<div class="head">
+				<a class="btn-close trigger" href="javascript:;"></a>
+			</div>
+			<div class="content">
+				<form action="/signup" method="post">
+					<div class="form-group">
+						<p>Email</p>
+						<input type="text" class="form-control" name="email">
 					</div>
-				</a>
+					<div class="form-group">
+						<p>Password</p>
+						<input type="password" class="form-control" name="password">
+					</div>
+
+					<button type="submit" class="btn signup">Signup</button>
+				</form>
+				<p>Already have an account?</p>
+				<button class='btn login-direct'>Login</button>
 			</div>
 		</div>
-	</body>
+	</div>
+	<div class="modal-wrapper two">
+		<div class="modal">
+			<div class="head">
+				<a class="btn-close trigger2" href="javascript:;"></a>
+			</div>
+			<div class="content">
+				<form action="/login" method="post">
+					<div class="form-group">
+						<p>Email</p>
+						<input type="text" class="form-control" name="email">
+					</div>
+					<div class="form-group">
+						<p>Password</p>
+						<input type="password" class="form-control" name="password">
+					</div>
 
-	</html>
+					<button type="submit" class="btn login">Login</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

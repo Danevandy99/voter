@@ -116,5 +116,4 @@
       $('.view-poll').css('display', 'none');
       $('input').val('');
    })
-
 })();

@@ -31,7 +31,7 @@ function ClickHandler() {
 				optionsArray.push(jo);
 			}
 			newPoll.options = optionsArray;
-			newPoll.author_id = req.user.github.id;
+			newPoll.author_id = req.user._id;
 			newPoll.save(function(err) {
 				if (err) {
 					throw err;
@@ -66,7 +66,7 @@ function ClickHandler() {
 		if (query.query === undefined) {
 			Poll
 				.find({
-					'author_id': req.user.github.id
+					'author_id': req.user._id
 				}, {
 					'__v': false
 				})
