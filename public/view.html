@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <title>Voter</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link href="/public/css/main.css" rel="stylesheet" type="text/css">
+</head>
+
+<header>
+    <p>Welcome!</p>
+    <a class="menu" href="/">Home</a>
+    <p>|</p>
+    <a class="menu" href="/profile">Profile</a>
+    <p>|</p>
+    <a class="menu" href="/logout">Logout</a>
+</header>
+
+<body>
+    <div class="container">
+        <div class="data-container vote-container">
+            <p id="title">Title</p>
+            <ul class="vote-list">
+            </ul>
+            <button class="btn vote-btn">VOTE!</button>
+        </div>
+        <div class='data-container chart-container'>
+            <section>
+                <div class="pieID pie">
+
+                </div>
+                <ul class="pieID legend">
+                    
+                </ul>
+            </section>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="common/ajax-functions.js"></script>
+    <script type="text/javascript" src="controllers/viewController.js"></script>
+    <script type="text/javascript" src="controllers/userController.client.js"></script>
+
+</body>
+
+</html>
