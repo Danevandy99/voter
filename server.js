@@ -1,10 +1,12 @@
 'use strict';
 
+var flash = require('express-flash');
 var express = require('express');
 var routes = require('./app/routes/index.js');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var session = require('express-session');
+var cookieParser = require('cookie-parser')
 
 var app = express();
 require('dotenv').load();
@@ -21,6 +23,9 @@ app.use(session({
 	resave: false,
 	saveUninitialized: true
 }));
+
+app.use(cookieParser('keyboard cat'));
+app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());

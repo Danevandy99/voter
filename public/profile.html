@@ -4,7 +4,7 @@
 
 	<head>
 		<title>Voter</title>
-		
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
 	</head>
 	
@@ -19,11 +19,10 @@
 
 	<body>
 		<div class="container">
-			<div class="github-profile data-container">
-				<img src="/public/img/gh-mark-32px.png" alt="github logo" />
-				<p><span>ID: </span><span id="profile-id" class="profile-value"></span></p>
-				<p><span>Username: </span><span id="profile-username" class="profile-value"></span></p>
-				<p><span>Repositories: </span><span id="profile-repos" class="profile-value"></span></p>
+			<div class="data-container">
+				<p><span>Name: </span><span id="profile-name" class="profile-value"></span></p>
+				<p><span>Polls: </span><span id="profile-polls" class="profile-value"></span></p>
+				<button class='btn delete-user' style='background-color: #ff4538'>Delete Account</button>
 			</div>
 		</div>
 		

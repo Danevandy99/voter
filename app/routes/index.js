@@ -14,6 +14,7 @@ module.exports = function (app, passport) {
 			res.redirect('/login');
 		}
 	}
+  	
 	app.use(bodyParser.urlencoded({ extended: true }));
 
 	var clickHandler = new ClickHandler();
@@ -31,7 +32,7 @@ module.exports = function (app, passport) {
 	app.post('/login', passport.authenticate('local-login', {
 		successRedirect : '/', 
 		failureRedirect : '/login', 
-		failureFlash : true 
+		failureFlash : true
 	}));
 
 	app.post('/signup', passport.authenticate('local-signup', {
@@ -80,8 +81,11 @@ module.exports = function (app, passport) {
 		.post(clickHandler.addPoll)
 		.delete(isLoggedIn, clickHandler.deletePoll);
 
-	app.route('/api/:id/clicks')
-		.get(isLoggedIn, clickHandler.getClicks)
-		.post(isLoggedIn, clickHandler.addClick)
-		.delete(isLoggedIn, clickHandler.resetClicks);
+	app.route('/api/:id/user')
+		.get(isLoggedIn, clickHandler.getUser)
+		.post(isLoggedIn, clickHandler.getUser)
+		.delete(isLoggedIn, clickHandler.deleteUser)
+		
+	app.route('/api/:id/addoption')
+		.post(isLoggedIn, clickHandler.addOption);
 };

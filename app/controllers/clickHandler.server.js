@@ -15,6 +15,30 @@ function ClickHandler() {
 		}
 		return newArray;
 	}
+	
+	this.addOption = function(req, res) {
+		var url_parts = url.parse(req.url, true);
+		var query = url_parts.query;
+		var new_option = req.body.new_option;
+		var jo = {};
+		jo.name = new_option;
+		jo.votes = 0;
+			Poll
+			.findOneAndUpdate({
+				'_id': query.query
+			}, {
+				$push: {
+					'options': jo
+				}
+			})
+			.exec(function(err, result) {
+				if (err) {
+					throw err;
+				}
+
+				res.json(result);
+			});
+	}
 
 	this.addPoll = function(req, res) {
 		var url_parts = url.parse(req.url, true);
@@ -55,7 +79,6 @@ function ClickHandler() {
 				}
 
 				res.json(result);
-				console.log('Updated');
 			});
 		}
 	};
@@ -100,24 +123,23 @@ function ClickHandler() {
 				if (err) {
 					throw err;
 				}
-				console.log('Delete Successful');
 				res.json('DELETED');
 			})
 	};
 
-	this.getClicks = function(req, res) {
+	this.getUser = function(req, res) {
 		Users
 			.findOne({
-				'github.id': req.user.github.id
+				'_id': req.user._id
 			}, {
-				'_id': false
+				'__v': false
 			})
 			.exec(function(err, result) {
 				if (err) {
 					throw err;
 				}
 
-				res.json(result.nbrClicks);
+				res.json(result);
 			});
 	};
 
@@ -139,19 +161,17 @@ function ClickHandler() {
 			});
 	};
 
-	this.resetClicks = function(req, res) {
+	this.deleteUser = function(req, res) {
 		Users
-			.findOneAndUpdate({
-				'github.id': req.user.github.id
-			}, {
-				'nbrClicks.clicks': 0
+			.findOneAndRemove({
+				'_id': req.user._id
 			})
 			.exec(function(err, result) {
 				if (err) {
 					throw err;
 				}
 
-				res.json(result.nbrClicks);
+				res.json('DELETED');
 			});
 	};
 

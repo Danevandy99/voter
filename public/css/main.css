@@ -148,10 +148,8 @@ header a ~ p {
 .modal {
 	width: 450px;
 	display: block;
-	margin: 50% 0 0 -13.2%;
+	margin: auto;
 	position: relative;
-	top: 50%;
-	left: 50%;
 	background: #fff;
 	opacity: 0;
 	-webkit-transition: all 0.5s ease-in-out;
@@ -161,18 +159,15 @@ header a ~ p {
 }
 
 .modal-wrapper.open .modal {
-	margin-top: -20%;
+	margin-top: 5%;
 	opacity: 1;
 	border-radius: 3px;
 }
 
 .head {
-	width: 90%;
-	height: 32px;
-	padding: 1.5em 5%;
 	overflow: hidden;
-	background: #fff;
 	border-radius: 3px;
+	display: inline;
 }
 
 .btn-close {
@@ -180,6 +175,8 @@ header a ~ p {
 	height: 32px;
 	display: block;
 	float: right;
+	margin-top: 10px;
+	margin-right: 10px;
 }
 
 .btn-close::before,
@@ -405,9 +402,19 @@ img {
 	border-left: 2px solid #00bcd4;
 	color: #00bcd4;
 	padding: 10px;
+	height: 25px;
 }
 
 .vote-list li p {
+	color: #00bcd4;
+	font-size: 15pt;
+}
+
+.vote-list li input {
+	font-size: 15pt;
+	border: 0px;
+	border-radius: 3px;
+	text-align: center;
 	color: #00bcd4;
 }
 
@@ -542,4 +549,8 @@ section {
 	text-align: center;
 	margin: auto;
 	margin-top: 20px;
+}
+
+.delete-user {
+	width: 150px;
 }

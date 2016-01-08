@@ -13,4 +13,10 @@ $(document).ready(function() {
      });
      return false;
   });
+  
+  $('#name').change(function() {
+      var name = '';
+     name = $(this).val();
+     $('.signup-form').attr('action', '/signup?query=' + name);
+  });
 });

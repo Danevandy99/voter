@@ -3,6 +3,7 @@
 var GitHubStrategy = require('passport-github').Strategy;
 var LocalStrategy   = require('passport-local').Strategy;
 var User = require('../models/users');
+var url = require('url');
 var configAuth = require('./auth');
 
 module.exports = function(passport) {
@@ -41,6 +42,7 @@ module.exports = function(passport) {
 						newUser.github.displayName = profile.displayName;
 						newUser.github.publicRepos = profile._json.public_repos;
 						newUser.nbrClicks.clicks = 0;
+						newUser.name = profile.displayName;
 
 						newUser.save(function(err) {
 							if (err) {
@@ -62,7 +64,8 @@ module.exports = function(passport) {
 			passReqToCallback: true // allows us to pass back the entire request to the callback
 		},
 		function(req, email, password, done) {
-
+			var url_parts = url.parse(req.url, true);
+			var query = url_parts.query;
 			// find a user whose email is the same as the forms email
 			// we are checking to see if the user trying to login already exists
 			User.findOne({
@@ -85,7 +88,7 @@ module.exports = function(passport) {
 					// set the user's local credentials
 					newUser.email = email;
 					newUser.password = newUser.generateHash(password); // use the generateHash function in our user model
-
+					newUser.name = query.query;
 					// save the user
 					newUser.save(function(err) {
 						if (err)
